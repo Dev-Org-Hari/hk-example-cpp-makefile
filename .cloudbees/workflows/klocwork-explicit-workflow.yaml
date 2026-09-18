@@ -22,6 +22,7 @@ jobs:
           username:  ${{ vars.KLOCWORK_USERNAME }}
           build-tool: make
           build-options: make all --ignore-errors -j14
+          license-host: klocwork-license.saas-qa.beescloud.com
           
       - id: print-outputs-from-klockwork-step
         name: print outputs from upstream Klocwork step
@@ -33,3 +34,4 @@ jobs:
           echo "High count: ${{ steps.klocwork-step.outputs.high-count }}"
           echo "Medium count: ${{ steps.klocwork-step.outputs.medium-count }}"
           echo "Low count: ${{ steps.klocwork-step.outputs.low-count }}"
+          echo "Policy Subject: ${{ steps.klocwork-step.outputs.policy-subject }}"
