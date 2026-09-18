@@ -33,7 +33,7 @@ jobs:
         with:
           cloudbees-url: https://api.saas-preprod.beescloud.com
           url: ${{ vars.KLOCWORK_URL }}
-          password: ${{ secrets.KLOCWORK_APP_TOKEN }}
+          token: ${{ secrets.KLOCWORK_APP_TOKEN }}
           username:  ${{ vars.KLOCWORK_USERNAME }}
           build-tool: make
           build-options: make all --ignore-errors -j14
