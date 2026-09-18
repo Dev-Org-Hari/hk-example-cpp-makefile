@@ -1,9 +1,32 @@
-SRCS = project/src/main.cpp \
-       project/src/vulnerable_buffer.cpp \
-       project/src/format_string.cpp \
-       project/src/command_injection.cpp
+# Compiler and flags
+CXX := g++
+CXXFLAGS := -Wall -Wextra
+LDFLAGS :=
+LDLIBS :=
 
-hello: $(SRCS)
-	g++ -Wl,--no-as-needed -o project/build/hello $(SRCS) \
-	    -Lproject/lib \
-	    -lcom_err -lverto -lgssapi_krb5 -lk5crypto -lkrad -lkrb5 -lkrb5support
+# Directories
+SRC_DIR := project/src
+BUILD_DIR := project/build
+
+# Source files
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+
+# Output binary
+TARGET := $(BUILD_DIR)/hello
+
+# Default target
+all: $(TARGET)
+
+# Ensure build directory exists before building
+$(TARGET): $(SRCS) | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+
+# Rule to create the build directory
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Clean target
+clean:
+	rm -f $(TARGET)
+
+.PHONY: all clean
