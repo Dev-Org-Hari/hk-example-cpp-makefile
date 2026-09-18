@@ -18,8 +18,10 @@ jobs:
         uses: cloudbees-io/perforce-klocwork-sast-plugin@CBP-62208
         with:
           url: ${{ vars.KLOCWORK_URL }}
-          token: ${{ secrets.KLOCWORK_APP_TOKEN }}
+          password: ${{ secrets.KLOCWORK_APP_TOKEN }}
           username:  ${{ vars.KLOCWORK_USERNAME }}
+          build-tool: make
+          build-options: make all --ignore-errors -j14
           
       - id: print-outputs-from-klockwork-step
         name: print outputs from upstream Klocwork step
