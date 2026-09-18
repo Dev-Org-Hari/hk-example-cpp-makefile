@@ -7,7 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read 
+      contents: read
+    outputs:
+      klocwork-job-output-critical: ${{ steps.klocwork-step.outputs.critical-count }}
+      klocwork-job-output-very-high: ${{ steps.klocwork-step.outputs.very-high-count }}
+      klocwork-job-output-high: ${{ steps.klocwork-step.outputs.high-count }}
+      klocwork-job-output-medium: ${{ steps.klocwork-step.outputs.medium-count }}
+      klocwork-job-output-low: ${{ steps.klocwork-step.outputs.low-count }}
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v3
