@@ -15,7 +15,7 @@ jobs:
 
       - name: Run Klocwork Scan
         id: klocwork-step
-        uses: cloudbees-io/perforce-klocwork-sast-plugin@CBP-62208
+        uses: cloudbees-io/perforce-klocwork-sast-plugin@v1
         with:
           url: ${{ vars.KLOCWORK_URL }}
           password: ${{ secrets.KLOCWORK_APP_TOKEN }}
